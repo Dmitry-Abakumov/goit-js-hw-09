@@ -6,7 +6,7 @@ import 'toastr/build/toastr.min.css';
 const inputDataObj = {};
 let timeoutId = null;
 
-refs = {
+const refs = {
   form: document.querySelector('.form'),
 };
 
