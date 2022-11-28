@@ -1,6 +1,9 @@
 import flatpickr from 'flatpickr';
-import flatpickr from 'flatpickr';
+import toastr from 'toastr';
+
+import './toastr-config';
 import 'flatpickr/dist/flatpickr.min.css';
+import 'toastr/build/toastr.min.css';
 
 const refs = {
   startBtn: document.querySelector('button[data-start]'),
@@ -21,7 +24,7 @@ const options = {
   onClose(selectedDates) {
     // console.log(selectedDates[0]);
     if (Date.now() > new Date(selectedDates).getTime()) {
-      alert('Please choose a date in the future');
+      toastr.error('Please choose a date in the future');
       refs.startBtn.setAttribute('disabled', '');
 
       return;
