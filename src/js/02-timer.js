@@ -50,6 +50,10 @@ const onStartBtnClick = e => {
     const remainingTime = new Date(futureDate).getTime() - Date.now();
 
     render(convertMs(remainingTime));
+
+    if (remainingTime < 1000) {
+      clearInterval(timerId);
+    }
   }, 1000);
 };
 
