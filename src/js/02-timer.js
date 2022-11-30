@@ -6,6 +6,7 @@ import 'flatpickr/dist/flatpickr.min.css';
 import 'toastr/build/toastr.min.css';
 
 const refs = {
+  input: document.querySelector('#datetime-picker'),
   startBtn: document.querySelector('button[data-start]'),
   days: document.querySelector('span[data-days]'),
   hours: document.querySelector('span[data-hours]'),
@@ -22,7 +23,6 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    // console.log(selectedDates[0]);
     if (Date.now() > new Date(selectedDates).getTime()) {
       toastr.error('Please choose a date in the future');
       refs.startBtn.setAttribute('disabled', '');
@@ -44,8 +44,10 @@ const render = ({ days, hours, minutes, seconds }) => {
   refs.seconds.textContent = seconds;
 };
 
-const onStartBtnClick = e => {
-  if (timerId) return;
+const onStartBtnClick = () => {
+  refs.startBtn.setAttribute('disabled', '');
+  refs.input.setAttribute('disabled', '');
+
   timerId = setInterval(() => {
     const remainingTime = new Date(futureDate).getTime() - Date.now();
 
